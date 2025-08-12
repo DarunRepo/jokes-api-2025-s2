@@ -44,5 +44,6 @@ class CategorySeeder extends Seeder
 
         //Only when testing
         //Category::factory(10)->create();
+
     }
 }
