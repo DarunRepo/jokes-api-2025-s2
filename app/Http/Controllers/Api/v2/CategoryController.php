@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Responses\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Controller
 {
@@ -58,13 +59,23 @@ class CategoryController extends Controller
      * Update the specified Category in storage.
      *
      * @param Request $request
-     * @param string $id
-     * @return void
+     * param string $id ?????
+     * return void ???????
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $validated = $request->validate([
+            'title' => ['string'],
+            'description' => ['string'],
+        ]);
+
+        $category->fill($validated);
+        $category->save();
+
+        return ApiResponse::success($category, 'Category updated', 200);
     }
+
+
 
     /**
      * Remove the specified Category from storage.

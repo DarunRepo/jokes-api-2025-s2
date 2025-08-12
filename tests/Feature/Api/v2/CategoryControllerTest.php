@@ -91,3 +91,29 @@ test('create a new category', function () {
         ->assertJson($dataResponse)
         ->assertJsonCount(5, 'data');
 });
+
+
+test('update a category', function () {
+
+    $category = Category::factory()->create(); // create category with random ID
+
+    // Arrange
+    $data = [
+        'title' => 'New Fake Category',
+        'description' => 'New Fake Category Description',
+    ];
+    $dataResponse = [
+        'message' => "Category updated",
+        'success' => true,
+        'data' => $data
+    ];
+
+    // Act
+    $response = $this->patchJson('/api/' . API_VER . '/categories/'. $category->id, $data);
+
+    // Assert
+    $response
+        ->assertStatus(200)
+        ->assertJson($dataResponse)
+        ->assertJsonCount(6, 'data');
+});

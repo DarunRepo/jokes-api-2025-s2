@@ -19,7 +19,7 @@ class CategoryFactory extends Factory
         return [
             'title' => fake()->words(1, true),
             'description' => fake()->sentence(),
-            'deleted_at' => fake()->random_int(0,10) > 8 ? fake()->dateTime() : null // 1in8 chance o
+//            'deleted_at' => fake()->random_int(0,10) > 8 ? fake()->dateTime() : null // 1in8 chance o
         ];
     }
 }
