@@ -30,8 +30,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => ['string'],
-            'description' => ['string'],
+            'title' => ['string', 'required', 'min:4'],
+            'description' => ['string', 'nullable', 'min:6'],
         ]);
 
         $category = Category::create($validated);
@@ -115,6 +115,7 @@ class CategoryController extends Controller
     public function removeAll()
     {
     }
+
     /**
      * Recover specified soft deleted category from trash
      *
@@ -124,6 +125,7 @@ class CategoryController extends Controller
     public function recoverOne(string $id)
     {
     }
+
     /**
      * Remove specified soft deleted category from trash
      *
